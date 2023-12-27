@@ -1,0 +1,20 @@
+import os
+import smtplib
+from email.message import EmailMessage
+from segredos import senha
+
+#Info EMAIL
+EMAIL_ADDRESS= 'jefferson.amorim@fapesb.ba.gov.br'
+EMAIL_PASSWORD= senha
+
+#Mensagem
+msg=EmailMessage()
+msg['Subject']= 'TESTE DE ENVIO DE E-MAIL'
+msg['FROM']='jefferson.amorim@fapesb.ba.gov.br'
+msg['TO']='jeffersonamorim361@gmail.com'
+msg.set_content('Prezado(a), O pré-cadastro da (Vai verificar se é 1,2 ou 3) (Vai por o nome da inst), não pôde ser aceito, pois já consta na nossa base de dados. Cordialmente, ')
+
+#Enviar
+with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+    smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+    smtp.send_message(msg)
